@@ -5,20 +5,20 @@ import cors from "@fastify/cors";
 import { createContext } from "./context";
 import { appRouter } from "./router";
 
-const app = fastify({ maxParamLength: 5000 });
+const server = fastify({ maxParamLength: 5000 });
 
-app.register(cors, { origin: "*" });
+server.register(cors, { origin: "*" });
 
-app.register<any>(fastifyTRPCPlugin, {
+server.register(fastifyTRPCPlugin, {
   prefix: "/trpc",
   trpcOptions: { router: appRouter, createContext },
 });
 
 (async () => {
   try {
-    await app.listen({ port: 5000 });
+    await server.listen({ port: 5000 });
   } catch (err) {
-    app.log.error(err);
+    server.log.error(err);
     process.exit(1);
   }
 })();
