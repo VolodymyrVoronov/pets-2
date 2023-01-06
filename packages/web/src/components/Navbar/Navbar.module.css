@@ -22,6 +22,9 @@
 .navbar__link:hover {
   color: unset;
 }
+.navbar__link-item {
+  transition: all 250ms ease;
+}
 
 .navbar__link-item--active {
   color: var(--white) !important;
