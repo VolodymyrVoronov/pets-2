@@ -27,11 +27,12 @@ export const appRouter = trpc
     input: z.object({
       name: z.string().min(1).max(245),
       age: z.number().int().positive(),
-      breed: z.string().min(1).max(50).optional(),
-      photo: z.string().optional(),
-      diet: z.string().max(500).optional(),
-      diseases: z.string().max(500).optional(),
-      information: z.string().max(500).optional(),
+      breed: z.string().min(1).max(50),
+      photo: z.string(),
+      diet: z.string().max(500),
+      diseases: z.string().max(500),
+      information: z.string().max(500),
+      isMarked: z.boolean(),
     }),
 
     async resolve({ input, ctx }) {
@@ -44,6 +45,7 @@ export const appRouter = trpc
           diet: input.diet,
           diseases: input.diseases,
           information: input.information,
+          isMarked: input.isMarked,
         },
       });
     },

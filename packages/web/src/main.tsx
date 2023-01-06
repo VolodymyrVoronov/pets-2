@@ -7,6 +7,7 @@ import { Reset } from "styled-reset";
 import App from "./App";
 
 import "./index.css";
+import "rsuite/dist/rsuite.min.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>

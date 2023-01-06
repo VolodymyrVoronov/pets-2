@@ -16,6 +16,7 @@ model Pet {
   diet        String
   diseases    String
   information String
+  isMarked    Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
