@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
 import { Navbar as Navigation, Nav } from "rsuite";
 import { NavLink } from "react-router-dom";
-import { MdPets, MdNoteAdd, MdBookmark } from "react-icons/md";
 import cn from "classnames";
+import { MdPets, MdNoteAdd, MdBookmark } from "react-icons/md";
 
 import Paths from "../../constants";
 
@@ -36,9 +36,15 @@ const navLinks: INavLinks[] = [
   },
 ];
 
-const Navbar = (): JSX.Element => {
+interface INavbarProps {
+  buttonsPosition?: "left" | "center" | "right";
+}
+
+const Navbar = ({ buttonsPosition = "center" }: INavbarProps): JSX.Element => {
   return (
-    <Navigation className={styles.navbar}>
+    <Navigation
+      className={cn(styles.navbar, styles[`navbar--${buttonsPosition}`])}
+    >
       <Nav>
         {navLinks.map(({ id, to, icon, text }) => {
           return (

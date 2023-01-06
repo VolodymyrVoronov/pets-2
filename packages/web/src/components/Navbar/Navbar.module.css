@@ -1,6 +1,17 @@
 .navbar {
   display: flex;
+}
+
+.navbar--left {
+  justify-content: flex-start;
+}
+
+.navbar--center {
   justify-content: center;
+}
+
+.navbar--right {
+  justify-content: flex-end;
 }
 
 .navbar__link {

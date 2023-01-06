@@ -28,6 +28,7 @@ const AppBody = (): JSX.Element => {
             path={Paths.MarkedPetsPage}
             element={<div>MarkedPetsPage</div>}
           />
+          <Route path={Paths.NoPage} element={<div>NoPage</div>} />
         </Routes>
       </AnimatePresence>
     </div>
