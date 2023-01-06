@@ -1,0 +1,8 @@
+.add-page {
+  overflow: auto;
+
+  width: 100%;
+  height: calc(100vh - 60px);
+
+  padding: 25px 0;
+}
