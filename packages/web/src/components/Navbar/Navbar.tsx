@@ -48,14 +48,13 @@ const Navbar = ({ buttonsPosition = "center" }: INavbarProps): JSX.Element => {
       <Nav>
         {navLinks.map(({ id, to, icon, text }) => {
           return (
-            <NavLink key={id} to={to} className={cn(styles.navbar__link)}>
+            <NavLink key={id} to={to} className={styles.navbar__link}>
               {({ isActive }) => (
                 <Nav.Item
                   as="span"
                   icon={icon}
-                  className={cn(styles["navbar__link-item"], {
-                    [styles["navbar__link-item--active"]]: isActive,
-                  })}
+                  className={styles["navbar__link-item"]}
+                  active={isActive}
                 >
                   {text}
                 </Nav.Item>

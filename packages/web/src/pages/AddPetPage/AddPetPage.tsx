@@ -1,4 +1,4 @@
-import { FlexboxGrid, Col } from "rsuite";
+import { FlexboxGrid, Col, Panel } from "rsuite";
 
 import trpc from "../../hooks/trpc";
 
@@ -13,7 +13,12 @@ const AddPetPage = (): JSX.Element => {
     <AnimatedWrapper>
       <FlexboxGrid justify="center" className={styles["add-page"]}>
         <FlexboxGrid.Item as={Col} colspan={24} xs={22} sm={18} md={16} lg={14}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas in
+          <Panel shaded bordered bodyFill className={styles["add-page__card"]}>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati
+            repellat ipsam minima eius itaque quasi modi odit eum explicabo
+            dolor voluptas, inventore sint suscipit expedita dolorem doloremque
+            fuga impedit illo!
+          </Panel>
         </FlexboxGrid.Item>
       </FlexboxGrid>
     </AnimatedWrapper>

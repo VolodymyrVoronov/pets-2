@@ -6,3 +6,9 @@
 
   padding: 25px 0;
 }
+
+.add-page__card {
+  padding: 50px;
+
+  background-color: var(--white);
+}
