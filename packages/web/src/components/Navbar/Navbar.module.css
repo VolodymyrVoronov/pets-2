@@ -1,0 +1,18 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar__link {
+  color: unset;
+}
+
+.navbar__link:focus,
+.navbar__link:hover {
+  color: unset;
+}
+
+.navbar__link-item--active {
+  color: var(--white) !important;
+  background-color: var(--rs-primary-500) !important;
+}
