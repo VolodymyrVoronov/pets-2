@@ -1,8 +1,9 @@
-import { FlexboxGrid, Col, Panel } from "rsuite";
+import { FlexboxGrid, Col, Panel, Grid, Row } from "rsuite";
 
 import trpc from "../../hooks/trpc";
 
 import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
+import Form from "../../components/Form/Form";
 
 import styles from "./AddPetPage.module.css";
 
@@ -12,12 +13,26 @@ const AddPetPage = (): JSX.Element => {
   return (
     <AnimatedWrapper>
       <FlexboxGrid justify="center" className={styles["add-page"]}>
-        <FlexboxGrid.Item as={Col} colspan={24} xs={22} sm={18} md={16} lg={14}>
+        <FlexboxGrid.Item
+          as={Col}
+          colspan={24}
+          xs={22}
+          sm={18}
+          md={20}
+          lg={20}
+          xl={16}
+        >
           <Panel shaded bordered bodyFill className={styles["add-page__card"]}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati
-            repellat ipsam minima eius itaque quasi modi odit eum explicabo
-            dolor voluptas, inventore sint suscipit expedita dolorem doloremque
-            fuga impedit illo!
+            <Grid fluid>
+              <Row>
+                <Col xs={24} lg={12}>
+                  Photo Uploader
+                </Col>
+                <Col xs={24} lg={12}>
+                  <Form />
+                </Col>
+              </Row>
+            </Grid>
           </Panel>
         </FlexboxGrid.Item>
       </FlexboxGrid>
