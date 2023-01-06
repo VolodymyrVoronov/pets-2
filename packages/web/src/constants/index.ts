@@ -1,7 +1,7 @@
 enum Paths {
   Root = "/",
   PetsPage = "/pets",
-  PetPageInfo = "/pet-info",
+  PetInfoPage = "/pet-info",
   AddPetPage = "/add-pet",
   MarkedPetsPage = "/marked-pets",
   NoPage = "*",
