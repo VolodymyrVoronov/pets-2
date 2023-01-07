@@ -28,7 +28,6 @@
     "react-query": "^3.39.1",
     "react-router-dom": "^6.6.1",
     "rsuite": "^5.24.0",
-    "styled-reset": "^4.4.4",
     "zod": "^3.17.3"
   },
   "devDependencies": {

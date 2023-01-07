@@ -12,3 +12,7 @@
 
   background-color: var(--white);
 }
+
+.add-page__buttons {
+  margin-top: 50px;
+}

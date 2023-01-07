@@ -1,7 +1,20 @@
 import { useMemo, useState } from "react";
-import { FlexboxGrid, Col, Panel, Grid, Row } from "rsuite";
+import { useNavigate } from "react-router-dom";
+import {
+  FlexboxGrid,
+  Col,
+  Panel,
+  Grid,
+  Row,
+  Button,
+  ButtonGroup,
+  Whisper,
+  Tooltip,
+} from "rsuite";
 
 import trpc from "../../hooks/trpc";
+
+import Paths from "../../constants";
 
 import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
 import Form from "../../components/Form/Form";
@@ -19,6 +32,8 @@ interface IPetData {
 }
 
 const AddPetPage = (): JSX.Element => {
+  const navigator = useNavigate();
+
   const { mutate, isLoading, isError, error } = trpc.useMutation(["createPet"]);
 
   const [petData, setPetData] = useState<IPetData>();
@@ -37,6 +52,10 @@ const AddPetPage = (): JSX.Element => {
     },
     []
   );
+
+  const onBackButtonClick = () => {
+    navigator(Paths.PetsPage);
+  };
 
   console.log(petData, petPhoto);
 
@@ -63,6 +82,34 @@ const AddPetPage = (): JSX.Element => {
                 </Col>
               </Row>
             </Grid>
+
+            <ButtonGroup
+              size="lg"
+              justified
+              className={styles["add-page__buttons"]}
+            >
+              <Whisper
+                placement="top"
+                controlId="control-id-hover"
+                trigger="hover"
+                speaker={
+                  <Tooltip>
+                    <h6>All information will be lost!</h6>
+                  </Tooltip>
+                }
+              >
+                <Button
+                  onClick={onBackButtonClick}
+                  color="blue"
+                  appearance="ghost"
+                >
+                  Back to pets without saving
+                </Button>
+              </Whisper>
+              <Button color="blue" appearance="primary">
+                Save entered information
+              </Button>
+            </ButtonGroup>
           </Panel>
         </FlexboxGrid.Item>
       </FlexboxGrid>
