@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FlexboxGrid,
@@ -76,7 +76,7 @@ const AddPetPage = (): JSX.Element => {
     mutate(pet);
   };
 
-  useEffect(() => {
+  const redirectToPetsPage = useCallback(() => {
     if (isSuccess) {
       const timeoutId = setTimeout(() => {
         navigator(Paths.PetsPage);
@@ -85,6 +85,10 @@ const AddPetPage = (): JSX.Element => {
       }, 1000);
     }
   }, [isSuccess, navigator]);
+
+  useEffect(() => {
+    redirectToPetsPage();
+  }, [redirectToPetsPage]);
 
   return (
     <AnimatedWrapper>
@@ -147,8 +151,10 @@ const AddPetPage = (): JSX.Element => {
 
             {(isError || isSuccess) && <Divider />}
 
-            {isError && <Tag color="red">{error?.message}</Tag>}
-            {isSuccess && <Tag color="green">Saved!</Tag>}
+            <div className={styles["add-page__errors"]}>
+              {isError && <Tag color="red">{error?.message}</Tag>}
+              {isSuccess && <Tag color="green">Saved!</Tag>}
+            </div>
           </Panel>
         </FlexboxGrid.Item>
       </FlexboxGrid>
