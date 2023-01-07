@@ -50,7 +50,7 @@ const PhotoUploader = ({
         id="photo"
       />
 
-      <Divider>Uploaded</Divider>
+      <Divider>Photo preview</Divider>
 
       <div
         className={styles["uploader__uploaded-photo"]}
