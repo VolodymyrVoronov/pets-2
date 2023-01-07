@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FlexboxGrid,
@@ -10,6 +10,8 @@ import {
   ButtonGroup,
   Whisper,
   Tooltip,
+  Tag,
+  Divider,
 } from "rsuite";
 
 import trpc from "../../hooks/trpc";
@@ -34,7 +36,9 @@ interface IPetData {
 const AddPetPage = (): JSX.Element => {
   const navigator = useNavigate();
 
-  const { mutate, isLoading, isError, error } = trpc.useMutation(["createPet"]);
+  const { mutate, isLoading, isSuccess, isError, error } = trpc.useMutation([
+    "createPet",
+  ]);
 
   const [petData, setPetData] = useState<IPetData>();
   const [petPhoto, setPetPhoto] = useState<string>("");
@@ -53,11 +57,34 @@ const AddPetPage = (): JSX.Element => {
     []
   );
 
-  const onBackButtonClick = () => {
+  const onBackButtonClick = (): void => {
     navigator(Paths.PetsPage);
   };
 
-  console.log(petData, petPhoto);
+  const onSaveButtonClick = (): void => {
+    interface IPhoto {
+      photo: string;
+    }
+
+    type TCombinedPet = IPetData & IPhoto;
+
+    const pet = {
+      ...petData,
+      photo: petPhoto,
+    } as TCombinedPet;
+
+    mutate(pet);
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      const timeoutId = setTimeout(() => {
+        navigator(Paths.PetsPage);
+
+        clearTimeout(timeoutId);
+      }, 1000);
+    }
+  }, [isSuccess, navigator]);
 
   return (
     <AnimatedWrapper>
@@ -102,14 +129,26 @@ const AddPetPage = (): JSX.Element => {
                   onClick={onBackButtonClick}
                   color="blue"
                   appearance="ghost"
+                  loading={isLoading}
                 >
                   Back to pets without saving
                 </Button>
               </Whisper>
-              <Button color="blue" appearance="primary">
+              <Button
+                onClick={onSaveButtonClick}
+                color="blue"
+                appearance="primary"
+                disabled={!petData?.name || !petData?.age}
+                loading={isLoading}
+              >
                 Save entered information
               </Button>
             </ButtonGroup>
+
+            {(isError || isSuccess) && <Divider />}
+
+            {isError && <Tag color="red">{error?.message}</Tag>}
+            {isSuccess && <Tag color="green">Saved!</Tag>}
           </Panel>
         </FlexboxGrid.Item>
       </FlexboxGrid>

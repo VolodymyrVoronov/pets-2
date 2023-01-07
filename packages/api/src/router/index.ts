@@ -26,13 +26,13 @@ export const appRouter = trpc
   .mutation("createPet", {
     input: z.object({
       name: z.string().min(1).max(245),
-      age: z.number().int().positive(),
-      breed: z.string().min(1).max(50),
-      photo: z.string(),
-      diet: z.string().max(500),
-      diseases: z.string().max(500),
-      information: z.string().max(500),
-      isMarked: z.boolean(),
+      age: z.string(),
+      breed: z.string().max(50).default("").optional(),
+      photo: z.string().default("").optional(),
+      diet: z.string().max(500).default("").optional(),
+      diseases: z.string().max(500).default("").optional(),
+      information: z.string().max(500).default("").optional(),
+      isMarked: z.boolean().optional(),
     }),
 
     async resolve({ input, ctx }) {
@@ -40,12 +40,12 @@ export const appRouter = trpc
         data: {
           name: input.name,
           age: input.age,
-          breed: input.breed,
-          photo: input.photo,
-          diet: input.diet,
-          diseases: input.diseases,
-          information: input.information,
-          isMarked: input.isMarked,
+          breed: input.breed || "",
+          photo: input.photo || "",
+          diet: input.diet || "",
+          diseases: input.diseases || "",
+          information: input.information || "",
+          isMarked: input.isMarked || false,
         },
       });
     },
