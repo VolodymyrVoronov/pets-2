@@ -10,7 +10,7 @@ datasource db {
 model Pet {
   id          Int      @id @default(autoincrement())
   name        String
-  age         Int
+  age         String
   breed       String
   photo       String
   diet        String
