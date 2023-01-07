@@ -6,9 +6,7 @@
 }
 
 .uploader__input {
-  display: flex;
-  align-self: center;
-
+  margin: 0 auto;
   margin-bottom: 25px;
 }
 
