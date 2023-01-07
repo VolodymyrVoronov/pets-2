@@ -18,7 +18,7 @@ const defaultAnimation = {
     opacity: 0,
   },
   transition: {
-    duration: 1,
+    duration: 0.5,
   },
 };
 

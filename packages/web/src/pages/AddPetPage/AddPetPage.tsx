@@ -1,10 +1,11 @@
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { FlexboxGrid, Col, Panel, Grid, Row } from "rsuite";
 
 import trpc from "../../hooks/trpc";
 
 import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
 import Form from "../../components/Form/Form";
+import PhotoUploader from "../../components/PhotoUploader/PhotoUploader";
 
 import styles from "./AddPetPage.module.css";
 
@@ -21,12 +22,23 @@ const AddPetPage = (): JSX.Element => {
   const { mutate, isLoading, isError, error } = trpc.useMutation(["createPet"]);
 
   const [petData, setPetData] = useState<IPetData>();
+  const [petPhoto, setPetPhoto] = useState<string>("");
 
-  const onFormChange = useCallback((formData: IPetData) => {
-    setPetData(formData);
-  }, []);
+  const onFormChange = useMemo(
+    () => (formData: IPetData) => {
+      setPetData(formData);
+    },
+    []
+  );
 
-  console.log(petData);
+  const onUploaderChange = useMemo(
+    () => (photo: string) => {
+      setPetPhoto(photo);
+    },
+    []
+  );
+
+  console.log(petData, petPhoto);
 
   return (
     <AnimatedWrapper>
@@ -43,10 +55,10 @@ const AddPetPage = (): JSX.Element => {
           <Panel shaded bordered bodyFill className={styles["add-page__card"]}>
             <Grid fluid>
               <Row>
-                <Col xs={24} lg={12}>
-                  Photo Uploader
+                <Col xs={24} lg={11} lgPush={0}>
+                  <PhotoUploader onUploaderChange={onUploaderChange} />
                 </Col>
-                <Col xs={24} lg={12}>
+                <Col xs={24} lg={11} lgPush={2}>
                   <Form onFormChange={onFormChange} />
                 </Col>
               </Row>

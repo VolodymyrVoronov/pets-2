@@ -1,0 +1,39 @@
+.uploader {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 75px;
+}
+
+.uploader__input {
+  display: flex;
+  align-self: center;
+
+  margin-bottom: 25px;
+}
+
+.uploader__uploaded-photo {
+  display: flex;
+  align-self: center;
+
+  width: 250px;
+  height: 250px;
+
+  background-size: cover;
+  background-position: center center;
+
+  border-radius: 5px;
+}
+
+@media only screen and (min-width: 992px) {
+  .uploader {
+    margin-bottom: 0px;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .uploader__uploaded-photo {
+    width: 350px;
+    height: 350px;
+  }
+}
