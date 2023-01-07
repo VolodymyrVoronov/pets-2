@@ -10,8 +10,8 @@ import {
   ButtonGroup,
   Whisper,
   Tooltip,
-  Tag,
   Divider,
+  Message,
 } from "rsuite";
 
 import trpc from "../../hooks/trpc";
@@ -151,10 +151,17 @@ const AddPetPage = (): JSX.Element => {
 
             {(isError || isSuccess) && <Divider />}
 
-            <div className={styles["add-page__errors"]}>
-              {isError && <Tag color="red">{error?.message}</Tag>}
-              {isSuccess && <Tag color="green">Saved!</Tag>}
-            </div>
+            {isError && (
+              <Message showIcon type="error" header="Error">
+                {error?.message}
+              </Message>
+            )}
+
+            {isSuccess && (
+              <Message showIcon type="success" header="Success">
+                Saved!
+              </Message>
+            )}
           </Panel>
         </FlexboxGrid.Item>
       </FlexboxGrid>
