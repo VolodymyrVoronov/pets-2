@@ -1,3 +1,4 @@
+import { useCallback, useMemo, useState } from "react";
 import { FlexboxGrid, Col, Panel, Grid, Row } from "rsuite";
 
 import trpc from "../../hooks/trpc";
@@ -7,8 +8,25 @@ import Form from "../../components/Form/Form";
 
 import styles from "./AddPetPage.module.css";
 
+interface IPetData {
+  name: string;
+  age: string;
+  breed: string;
+  diet: string;
+  diseases: string;
+  information: string;
+}
+
 const AddPetPage = (): JSX.Element => {
   const { mutate, isLoading, isError, error } = trpc.useMutation(["createPet"]);
+
+  const [petData, setPetData] = useState<IPetData>();
+
+  const onFormChange = useCallback((formData: IPetData) => {
+    setPetData(formData);
+  }, []);
+
+  console.log(petData);
 
   return (
     <AnimatedWrapper>
@@ -29,7 +47,7 @@ const AddPetPage = (): JSX.Element => {
                   Photo Uploader
                 </Col>
                 <Col xs={24} lg={12}>
-                  <Form />
+                  <Form onFormChange={onFormChange} />
                 </Col>
               </Row>
             </Grid>

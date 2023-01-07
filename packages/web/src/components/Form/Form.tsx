@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, memo, useEffect, useState } from "react";
 import { Form as F, Schema } from "rsuite";
 
 import TextArea from "../TextArea/TextArea";
@@ -12,6 +12,7 @@ interface IFormProps {
     diseases: string;
     information: string;
   };
+  onFormChange?: (formData: IInitialFormDataState) => void;
 }
 
 interface IInitialFormDataState {
@@ -29,15 +30,15 @@ const model = Schema.Model({
   age: StringType().isRequired("This field is required."),
 });
 
-const Form = ({ data }: IFormProps): JSX.Element => {
-  const initialFormDataState: IInitialFormDataState = {
+const Form = ({ data, onFormChange }: IFormProps): JSX.Element => {
+  const initialFormDataState = {
     name: data?.name || "",
     age: data?.age || "",
     breed: data?.breed || "",
     diet: data?.diet || "",
     diseases: data?.diseases || "",
     information: data?.information || "",
-  };
+  } as IInitialFormDataState;
 
   const [formData, setFormData] =
     useState<IInitialFormDataState>(initialFormDataState);
@@ -47,6 +48,12 @@ const Form = ({ data }: IFormProps): JSX.Element => {
   ): void => {
     setFormData(e as IInitialFormDataState);
   };
+
+  useEffect(() => {
+    if (formData) {
+      onFormChange?.(formData);
+    }
+  }, [formData, onFormChange]);
 
   return (
     <F
@@ -91,4 +98,4 @@ const Form = ({ data }: IFormProps): JSX.Element => {
   );
 };
 
-export default Form;
+export default memo(Form);
