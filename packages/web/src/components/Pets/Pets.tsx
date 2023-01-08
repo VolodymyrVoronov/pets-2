@@ -17,10 +17,16 @@ interface IPetsProps {
     createdAt: Date;
     isMarked: boolean;
   }[];
+
   onMarkChange: (id: number, isMarked: boolean) => void;
+  onDeleteChange: (id: number) => void;
 }
 
-const Pets = ({ pets, onMarkChange }: IPetsProps): JSX.Element => {
+const Pets = ({
+  pets,
+  onMarkChange,
+  onDeleteChange,
+}: IPetsProps): JSX.Element => {
   return (
     <FlexboxGrid justify="center" className={styles["pets-page"]}>
       <FlexboxGrid.Item as={Col} colspan={24} xs={22} sm={20} md={18} xl={22}>
@@ -37,6 +43,7 @@ const Pets = ({ pets, onMarkChange }: IPetsProps): JSX.Element => {
                     photo={photo}
                     isMarked={isMarked}
                     onMarkChange={onMarkChange}
+                    onDeleteChange={onDeleteChange}
                   />
                 </Col>
               );

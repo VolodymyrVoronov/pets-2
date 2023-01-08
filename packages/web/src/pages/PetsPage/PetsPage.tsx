@@ -17,21 +17,36 @@ const PetsPage = (): JSX.Element => {
   } = trpc.useQuery(["getPets"]);
 
   const {
-    mutate,
+    mutate: mutateMarkPet,
     isSuccess: isSuccessMarkPet,
     isError: isErrorMarkPet,
     error: errorMarkPet,
   } = trpc.useMutation(["markPet"]);
 
-  const onMarkChange = (id: number, isMarked: boolean) => {
-    mutate({ id, isMarked });
+  const {
+    mutate: mutateDeletePet,
+    isSuccess: isSuccessMutateDeletePet,
+    isError: isErrorMutateDeletePet,
+    error: errorMutateDeletePet,
+  } = trpc.useMutation(["deletePet"]);
+
+  const onMarkChange = (id: number, isMarked: boolean): void => {
+    mutateMarkPet({ id, isMarked });
+  };
+
+  const onDeleteChange = (id: number): void => {
+    mutateDeletePet({ id });
   };
 
   const refetchPets = useCallback(() => {
     if (isSuccessMarkPet) {
       utils.refetchQueries();
     }
-  }, [isSuccessMarkPet, utils]);
+
+    if (isSuccessMutateDeletePet) {
+      utils.refetchQueries();
+    }
+  }, [isSuccessMarkPet, isSuccessMutateDeletePet, utils]);
 
   useEffect(() => {
     refetchPets();
@@ -40,21 +55,33 @@ const PetsPage = (): JSX.Element => {
   return (
     <AnimatedWrapper>
       {isErrorGetPets && (
-        <Message showIcon type="error" header="Error while fetching data">
-          {errorGetPets?.message}
+        <Message showIcon type="error">
+          Error while fetching data/ {errorGetPets?.message}
         </Message>
       )}
 
       {isErrorMarkPet && (
-        <Message showIcon type="error" header="Error while fetching data">
-          {errorMarkPet?.message}
+        <Message showIcon type="error">
+          Error while marking pet / {errorMarkPet?.message}
+        </Message>
+      )}
+
+      {isErrorMutateDeletePet && (
+        <Message showIcon type="error">
+          Error while deleting pet / {errorMutateDeletePet?.message}
         </Message>
       )}
 
       {isLoadingGetPets ? (
         <Loader size="lg" center />
       ) : (
-        data && <Pets pets={data} onMarkChange={onMarkChange} />
+        data && (
+          <Pets
+            pets={data}
+            onMarkChange={onMarkChange}
+            onDeleteChange={onDeleteChange}
+          />
+        )
       )}
     </AnimatedWrapper>
   );

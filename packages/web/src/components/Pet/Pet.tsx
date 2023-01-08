@@ -15,6 +15,7 @@ interface IPetProps {
   photo: string;
   isMarked: boolean;
   onMarkChange: (id: number, isMarked: boolean) => void;
+  onDeleteChange: (id: number) => void;
 }
 
 const Pet = ({
@@ -25,9 +26,14 @@ const Pet = ({
   photo,
   isMarked,
   onMarkChange,
+  onDeleteChange,
 }: IPetProps): JSX.Element => {
   const onMarkButtonClick = (): void => {
     onMarkChange(id, !isMarked);
+  };
+
+  const onDeleteButtonClick = (): void => {
+    onDeleteChange(id);
   };
 
   return (
@@ -74,6 +80,7 @@ const Pet = ({
             appearance="primary"
             circle
             className={styles.pet__button}
+            onClick={onDeleteButtonClick}
           />
         </WhisperWrapper>
       </ButtonGroup>
