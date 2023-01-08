@@ -19,5 +19,15 @@
 }
 
 .navbar__link-item {
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+
   transition: all 500ms ease;
+}
+
+@media only screen and (min-width: 425px) {
+  .navbar__link-item {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
 }
