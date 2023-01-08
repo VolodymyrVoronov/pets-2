@@ -8,8 +8,6 @@ import {
   Row,
   Button,
   ButtonGroup,
-  Whisper,
-  Tooltip,
   Divider,
   Message,
 } from "rsuite";
@@ -21,6 +19,7 @@ import Paths from "../../constants";
 import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
 import Form from "../../components/Form/Form";
 import PhotoUploader from "../../components/PhotoUploader/PhotoUploader";
+import WhisperWrapper from "../../components/WhisperWrapper/WhisperWrapper";
 
 import styles from "./AddPetPage.module.css";
 
@@ -119,16 +118,7 @@ const AddPetPage = (): JSX.Element => {
               justified
               className={styles["add-page__buttons"]}
             >
-              <Whisper
-                placement="top"
-                controlId="control-id-hover"
-                trigger="hover"
-                speaker={
-                  <Tooltip>
-                    <h6>All information will be lost!</h6>
-                  </Tooltip>
-                }
-              >
+              <WhisperWrapper text="All information will be lost!" tag="h6">
                 <Button
                   onClick={onBackButtonClick}
                   color="blue"
@@ -137,7 +127,8 @@ const AddPetPage = (): JSX.Element => {
                 >
                   Back to pets without saving
                 </Button>
-              </Whisper>
+              </WhisperWrapper>
+
               <Button
                 onClick={onSaveButtonClick}
                 color="blue"

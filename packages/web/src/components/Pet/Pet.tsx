@@ -1,4 +1,4 @@
-import { ButtonGroup, IconButton, Panel, Tooltip, Whisper } from "rsuite";
+import { ButtonGroup, IconButton, Panel } from "rsuite";
 import { MdDelete, MdFavoriteBorder, MdFavorite, MdInfo } from "react-icons/md";
 
 import WhisperWrapper from "../WhisperWrapper/WhisperWrapper";

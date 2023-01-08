@@ -1,7 +1,9 @@
 import { ChangeEvent, memo, useState } from "react";
-import { Divider, Tooltip, Whisper } from "rsuite";
+import { Divider } from "rsuite";
 
 import convertToBase64 from "../../helpers/convertToBase64";
+
+import WhisperWrapper from "../WhisperWrapper/WhisperWrapper";
 
 import placeholderPhoto from "../../assets/images/placeholder-01.png";
 
@@ -41,15 +43,9 @@ const PhotoUploader = ({
     <div className={styles.uploader}>
       <Divider>Photo upload</Divider>
 
-      <Whisper
-        placement="top"
-        controlId="control-id-hover"
-        trigger="hover"
-        speaker={
-          <Tooltip>
-            <h6>Preferred size not bigger than 1000px x 1000px</h6>
-          </Tooltip>
-        }
+      <WhisperWrapper
+        text="Preferred size not bigger than 1000px x 1000px"
+        tag="h6"
       >
         <input
           className={styles.uploader__input}
@@ -59,7 +55,7 @@ const PhotoUploader = ({
           onChange={(e) => onFileUploadChange(e)}
           id="photo"
         />
-      </Whisper>
+      </WhisperWrapper>
 
       <Divider>Photo preview</Divider>
 
