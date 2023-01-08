@@ -8,11 +8,11 @@ interface IWhisperWrapperProps {
 }
 
 const WhisperWrapper = ({
-  tag,
+  tag = "p",
   text,
   children,
 }: IWhisperWrapperProps): JSX.Element => {
-  const Component = tag || "p";
+  const Component = tag;
 
   return (
     <Whisper
