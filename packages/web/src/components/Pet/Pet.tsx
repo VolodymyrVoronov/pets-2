@@ -1,6 +1,8 @@
 import { ButtonGroup, IconButton, Panel, Tooltip, Whisper } from "rsuite";
 import { MdDelete, MdFavoriteBorder, MdFavorite, MdInfo } from "react-icons/md";
 
+import WhisperWrapper from "../WhisperWrapper/WhisperWrapper";
+
 import placeholderPhoto from "../../assets/images/placeholder-01.png";
 
 import styles from "./Pet.module.css";
@@ -38,16 +40,7 @@ const Pet = ({
       </div>
 
       <ButtonGroup vertical size="lg" className={styles.pet__buttons}>
-        <Whisper
-          placement="top"
-          controlId="control-id-hover"
-          trigger="hover"
-          speaker={
-            <Tooltip>
-              <p>More information</p>
-            </Tooltip>
-          }
-        >
+        <WhisperWrapper text="More information">
           <IconButton
             icon={<MdInfo />}
             color="green"
@@ -55,14 +48,9 @@ const Pet = ({
             circle
             className={styles.pet__button}
           />
-        </Whisper>
+        </WhisperWrapper>
 
-        <Whisper
-          placement="top"
-          controlId="control-id-hover"
-          trigger="hover"
-          speaker={<Tooltip>{isMarked ? <p>Unmark</p> : <p>Mark</p>}</Tooltip>}
-        >
+        <WhisperWrapper text={isMarked ? "Unmark" : "Mark"}>
           <IconButton
             icon={isMarked ? <MdFavorite /> : <MdFavoriteBorder />}
             color="orange"
@@ -70,18 +58,9 @@ const Pet = ({
             circle
             className={styles.pet__button}
           />
-        </Whisper>
+        </WhisperWrapper>
 
-        <Whisper
-          placement="top"
-          controlId="control-id-hover"
-          trigger="hover"
-          speaker={
-            <Tooltip>
-              <p>Delete this card</p>
-            </Tooltip>
-          }
-        >
+        <WhisperWrapper text="Delete this card">
           <IconButton
             icon={<MdDelete />}
             color="red"
@@ -89,7 +68,7 @@ const Pet = ({
             circle
             className={styles.pet__button}
           />
-        </Whisper>
+        </WhisperWrapper>
       </ButtonGroup>
     </Panel>
   );
