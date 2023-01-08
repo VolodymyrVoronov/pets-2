@@ -2,6 +2,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import Paths from "../../constants/paths";
+import Trpc from "../../constants/trpc";
 
 import PetsPage from "../../pages/PetsPage/PetsPage";
 import AddPetPage from "../../pages/AddPetPage/AddPetPage";
@@ -38,7 +39,7 @@ const AppBody = (): JSX.Element => {
           <Routes key={location.pathname} location={location}>
             <Route
               path={Paths.Root}
-              element={<Navigate to={Paths.PetsPage} />}
+              element={<Navigate to={Paths.PetsPage} state={Trpc.GetPets} />}
             />
             <Route path={Paths.PetsPage} element={<PetsPage />} />
             <Route path={Paths.PetInfoPage} element={<PetInfoPage />} />
