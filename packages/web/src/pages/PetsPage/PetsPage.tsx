@@ -1,15 +1,24 @@
-import React from "react";
+import { Loader, Message } from "rsuite";
 
 import trpc from "../../hooks/trpc";
 
 import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
+import Pets from "../../components/Pets/Pets";
 
 const PetsPage = (): JSX.Element => {
   const { data, isLoading, isError, error } = trpc.useQuery(["getPets"]);
 
-  console.log(data);
+  return (
+    <AnimatedWrapper>
+      {isLoading ? <Loader size="lg" center /> : data && <Pets pets={data} />}
 
-  return <AnimatedWrapper>PetsPage</AnimatedWrapper>;
+      {isError && (
+        <Message showIcon type="error" header="Error while fetching data">
+          {error?.message}
+        </Message>
+      )}
+    </AnimatedWrapper>
+  );
 };
 
 export default PetsPage;

@@ -1,0 +1,105 @@
+.pet {
+  margin-bottom: 22px;
+
+  background-color: var(--white);
+}
+
+.pet div:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pet__photo {
+  display: flex;
+
+  width: 100px;
+  height: 150px;
+
+  background-size: cover;
+  background-position: center center;
+}
+
+@media only screen and (min-width: 576px) {
+  .pet__photo {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .pet__photo {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+.pet__info {
+  display: flex;
+  flex-direction: column;
+
+  width: calc(100% - 100px);
+
+  padding: 15px;
+}
+
+@media only screen and (min-width: 576px) {
+  .pet__info {
+    width: calc(100% - 150px);
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .pet__info {
+    width: calc(100% - 250px);
+  }
+}
+
+.pet__info-name,
+.pet__info-age,
+.pet__info-information {
+  margin-bottom: 5px;
+}
+
+@media only screen and (min-width: 992px) {
+  .pet__info-name,
+  .pet__info-age,
+  .pet__info-information {
+    margin-bottom: 10px;
+  }
+}
+
+.pet__info-information {
+  position: relative;
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  mask-image: linear-gradient(180deg, var(--black) 60%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, var(--black) 60%, transparent);
+}
+
+@media only screen and (min-width: 992px) {
+  .pet__info-information {
+    -webkit-line-clamp: 5;
+  }
+}
+
+.pet__buttons {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-right: 15px;
+}
+
+.pet__button {
+  display: flex !important;
+  margin-bottom: 10px !important;
+}
+
+.pet__button:last-child {
+  margin-bottom: 0 !important;
+}
