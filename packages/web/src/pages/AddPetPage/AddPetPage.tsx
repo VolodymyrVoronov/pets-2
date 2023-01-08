@@ -33,7 +33,7 @@ interface IPetData {
 }
 
 const AddPetPage = (): JSX.Element => {
-  const navigator = useNavigate();
+  const navigate = useNavigate();
 
   const { mutate, isLoading, isSuccess, isError, error } = trpc.useMutation([
     "createPet",
@@ -57,7 +57,7 @@ const AddPetPage = (): JSX.Element => {
   );
 
   const onBackButtonClick = (): void => {
-    navigator(Paths.PetsPage);
+    navigate(Paths.PetsPage);
   };
 
   const onSaveButtonClick = (): void => {
@@ -78,12 +78,12 @@ const AddPetPage = (): JSX.Element => {
   const redirectToPetsPage = useCallback(() => {
     if (isSuccess) {
       const timeoutId = setTimeout(() => {
-        navigator(Paths.PetsPage);
+        navigate(Paths.PetsPage);
 
         clearTimeout(timeoutId);
       }, 1000);
     }
-  }, [isSuccess, navigator]);
+  }, [isSuccess, navigate]);
 
   useEffect(() => {
     redirectToPetsPage();

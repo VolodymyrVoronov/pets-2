@@ -1,5 +1,5 @@
-import { Loader, Message } from "rsuite";
 import { useCallback, useEffect } from "react";
+import { Loader, Message } from "rsuite";
 
 import trpc from "../../hooks/trpc";
 
@@ -39,11 +39,7 @@ const MarkedPetsPage = (): JSX.Element => {
   };
 
   const refetchPets = useCallback(() => {
-    if (isSuccessMarkPet) {
-      utils.refetchQueries();
-    }
-
-    if (isSuccessMutateDeletePet) {
+    if (isSuccessMarkPet || isSuccessMutateDeletePet) {
       utils.refetchQueries();
     }
   }, [isSuccessMarkPet, isSuccessMutateDeletePet, utils]);

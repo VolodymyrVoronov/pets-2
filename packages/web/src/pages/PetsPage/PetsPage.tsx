@@ -39,11 +39,7 @@ const PetsPage = (): JSX.Element => {
   };
 
   const refetchPets = useCallback(() => {
-    if (isSuccessMarkPet) {
-      utils.refetchQueries();
-    }
-
-    if (isSuccessMutateDeletePet) {
+    if (isSuccessMarkPet || isSuccessMutateDeletePet) {
       utils.refetchQueries();
     }
   }, [isSuccessMarkPet, isSuccessMutateDeletePet, utils]);
