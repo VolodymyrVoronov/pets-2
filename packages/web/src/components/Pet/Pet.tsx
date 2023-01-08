@@ -1,5 +1,5 @@
 import { ButtonGroup, IconButton, Panel, Tooltip, Whisper } from "rsuite";
-import { MdDelete, MdFavorite, MdReadMore } from "react-icons/md";
+import { MdDelete, MdFavoriteBorder, MdFavorite, MdInfo } from "react-icons/md";
 
 import placeholderPhoto from "../../assets/images/placeholder-01.png";
 
@@ -49,7 +49,7 @@ const Pet = ({
           }
         >
           <IconButton
-            icon={<MdReadMore />}
+            icon={<MdInfo />}
             color="green"
             appearance="primary"
             circle
@@ -61,13 +61,11 @@ const Pet = ({
           placement="top"
           controlId="control-id-hover"
           trigger="hover"
-          speaker={
-            <Tooltip>{isMarked ? <p>Unmarked</p> : <p>Marked</p>}</Tooltip>
-          }
+          speaker={<Tooltip>{isMarked ? <p>Unmark</p> : <p>Mark</p>}</Tooltip>}
         >
           <IconButton
-            icon={<MdFavorite />}
-            color={isMarked ? "violet" : "blue"}
+            icon={isMarked ? <MdFavorite /> : <MdFavoriteBorder />}
+            color="orange"
             appearance="primary"
             circle
             className={styles.pet__button}

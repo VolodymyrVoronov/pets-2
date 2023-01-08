@@ -97,7 +97,15 @@
 
 .pet__button {
   display: flex !important;
-  margin-bottom: 10px !important;
+  margin-bottom: 5px !important;
+
+  font-size: 20px !important;
+}
+
+@media only screen and (min-width: 992px) {
+  .pet__button {
+    margin-bottom: 10px !important;
+  }
 }
 
 .pet__button:last-child {
