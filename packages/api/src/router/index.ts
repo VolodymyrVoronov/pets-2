@@ -10,6 +10,15 @@ export const appRouter = trpc
       return await ctx.prisma.pet.findMany();
     },
   })
+  .query("getMarkedPets", {
+    async resolve({ ctx }) {
+      return await ctx.prisma.pet.findMany({
+        where: {
+          isMarked: true,
+        },
+      });
+    },
+  })
   .query("getPet", {
     input: z.object({
       id: z.number(),
