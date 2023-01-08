@@ -55,7 +55,7 @@ const PetsPage = (): JSX.Element => {
     <AnimatedWrapper>
       {isErrorFetchPets && (
         <Message showIcon type="error">
-          Error while fetching data/ {errorFetchPets?.message}
+          Error while fetching data / {errorFetchPets?.message}
         </Message>
       )}
 
