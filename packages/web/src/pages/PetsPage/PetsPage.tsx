@@ -14,9 +14,9 @@ const PetsPage = (): JSX.Element => {
 
   const {
     data,
-    isLoading: isLoadingGetPets,
-    isError: isErrorGetPets,
-    error: errorGetPets,
+    isLoading: isLoadingFetchPets,
+    isError: isErrorFetchPets,
+    error: errorFetchPets,
   } = trpc.useQuery([location.state]);
 
   const {
@@ -53,9 +53,9 @@ const PetsPage = (): JSX.Element => {
 
   return (
     <AnimatedWrapper>
-      {isErrorGetPets && (
+      {isErrorFetchPets && (
         <Message showIcon type="error">
-          Error while fetching data/ {errorGetPets?.message}
+          Error while fetching data/ {errorFetchPets?.message}
         </Message>
       )}
 
@@ -71,7 +71,7 @@ const PetsPage = (): JSX.Element => {
         </Message>
       )}
 
-      {isLoadingGetPets ? (
+      {isLoadingFetchPets ? (
         <Loader size="lg" center />
       ) : (
         data && (
