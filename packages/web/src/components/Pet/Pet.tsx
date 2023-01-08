@@ -1,4 +1,4 @@
-import { ButtonGroup, IconButton, Panel } from "rsuite";
+import { ButtonGroup, IconButton, Panel, Tooltip, Whisper } from "rsuite";
 import { MdDelete, MdFavorite, MdReadMore } from "react-icons/md";
 
 import placeholderPhoto from "../../assets/images/placeholder-01.png";
@@ -11,9 +11,17 @@ interface IPetProps {
   age: string;
   information: string;
   photo: string;
+  isMarked: boolean;
 }
 
-const Pet = ({ id, name, age, information, photo }: IPetProps): JSX.Element => {
+const Pet = ({
+  id,
+  name,
+  age,
+  information,
+  photo,
+  isMarked,
+}: IPetProps): JSX.Element => {
   return (
     <Panel shaded bordered bodyFill className={styles.pet}>
       <div
@@ -30,29 +38,60 @@ const Pet = ({ id, name, age, information, photo }: IPetProps): JSX.Element => {
       </div>
 
       <ButtonGroup vertical size="lg" className={styles.pet__buttons}>
-        <IconButton
-          icon={<MdReadMore />}
-          color="green"
-          appearance="primary"
-          circle
-          className={styles.pet__button}
-        />
+        <Whisper
+          placement="top"
+          controlId="control-id-hover"
+          trigger="hover"
+          speaker={
+            <Tooltip>
+              <p>More information</p>
+            </Tooltip>
+          }
+        >
+          <IconButton
+            icon={<MdReadMore />}
+            color="green"
+            appearance="primary"
+            circle
+            className={styles.pet__button}
+          />
+        </Whisper>
 
-        <IconButton
-          icon={<MdFavorite />}
-          color="orange"
-          appearance="primary"
-          circle
-          className={styles.pet__button}
-        />
+        <Whisper
+          placement="top"
+          controlId="control-id-hover"
+          trigger="hover"
+          speaker={
+            <Tooltip>{isMarked ? <p>Unmarked</p> : <p>Marked</p>}</Tooltip>
+          }
+        >
+          <IconButton
+            icon={<MdFavorite />}
+            color={isMarked ? "violet" : "blue"}
+            appearance="primary"
+            circle
+            className={styles.pet__button}
+          />
+        </Whisper>
 
-        <IconButton
-          icon={<MdDelete />}
-          color="red"
-          appearance="primary"
-          circle
-          className={styles.pet__button}
-        />
+        <Whisper
+          placement="top"
+          controlId="control-id-hover"
+          trigger="hover"
+          speaker={
+            <Tooltip>
+              <p>Delete this card</p>
+            </Tooltip>
+          }
+        >
+          <IconButton
+            icon={<MdDelete />}
+            color="red"
+            appearance="primary"
+            circle
+            className={styles.pet__button}
+          />
+        </Whisper>
       </ButtonGroup>
     </Panel>
   );

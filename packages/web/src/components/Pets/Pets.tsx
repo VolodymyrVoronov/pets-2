@@ -19,14 +19,12 @@ interface IPetsProps {
 }
 
 const Pets = ({ pets }: IPetsProps): JSX.Element => {
-  console.log(pets);
-
   return (
     <FlexboxGrid justify="center" className={styles["pets-page"]}>
       <FlexboxGrid.Item as={Col} colspan={24} xs={22} sm={20} md={18} xl={22}>
         <Grid fluid>
           <Row gutter={24}>
-            {pets.map(({ id, name, age, information, photo }) => {
+            {pets.map(({ id, name, age, information, photo, isMarked }) => {
               return (
                 <Col key={id} xs={24} xl={12}>
                   <Pet
@@ -35,6 +33,7 @@ const Pets = ({ pets }: IPetsProps): JSX.Element => {
                     age={age}
                     information={information}
                     photo={photo}
+                    isMarked={isMarked}
                   />
                 </Col>
               );
