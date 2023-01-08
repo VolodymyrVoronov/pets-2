@@ -1,12 +1,11 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
-import Paths from "../../constants";
+import Paths from "../../constants/paths";
 
 import PetsPage from "../../pages/PetsPage/PetsPage";
 import AddPetPage from "../../pages/AddPetPage/AddPetPage";
 import PetInfoPage from "../../pages/PetInfoPage/PetInfoPage";
-import MarkedPetsPage from "../../pages/MarkedPetsPage/MarkedPetsPage";
 
 import Navbar from "../Navbar/Navbar";
 import AnimatedWrapper from "../AnimatedWrapper/AnimatedWrapper";
@@ -44,7 +43,7 @@ const AppBody = (): JSX.Element => {
             <Route path={Paths.PetsPage} element={<PetsPage />} />
             <Route path={Paths.PetInfoPage} element={<PetInfoPage />} />
             <Route path={Paths.AddPetPage} element={<AddPetPage />} />
-            <Route path={Paths.MarkedPetsPage} element={<MarkedPetsPage />} />
+            <Route path={Paths.MarkedPetsPage} element={<PetsPage />} />
             <Route path={Paths.NoPage} element={<div>NoPage</div>} />
           </Routes>
         </AnimatePresence>

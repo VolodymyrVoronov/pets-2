@@ -4,13 +4,15 @@ import { NavLink } from "react-router-dom";
 import cn from "classnames";
 import { MdPets, MdNoteAdd, MdBookmark } from "react-icons/md";
 
-import Paths from "../../constants";
+import Paths from "../../constants/paths";
+import Trpc from "../../constants/trpc";
 
 import styles from "./Navbar.module.css";
 
 interface INavLinks {
   id: number;
   to: string;
+  state?: string;
   icon: ReactElement;
   text: string;
 }
@@ -19,18 +21,21 @@ const navLinks: INavLinks[] = [
   {
     id: 1,
     to: Paths.PetsPage,
+    state: Trpc.GetPets,
     icon: <MdPets />,
     text: "My pets",
   },
   {
     id: 2,
     to: Paths.AddPetPage,
+    state: "",
     icon: <MdNoteAdd />,
     text: "Add pet",
   },
   {
     id: 3,
     to: Paths.MarkedPetsPage,
+    state: Trpc.GetMarkedPets,
     icon: <MdBookmark />,
     text: "Marked pets",
   },
@@ -46,9 +51,14 @@ const Navbar = ({ buttonsPosition = "center" }: INavbarProps): JSX.Element => {
       className={cn(styles.navbar, styles[`navbar--${buttonsPosition}`])}
     >
       <Nav>
-        {navLinks.map(({ id, to, icon, text }) => {
+        {navLinks.map(({ id, to, state, icon, text }) => {
           return (
-            <NavLink key={id} to={to} className={styles.navbar__link}>
+            <NavLink
+              key={id}
+              to={to}
+              state={state}
+              className={styles.navbar__link}
+            >
               {({ isActive }) => (
                 <Nav.Item
                   as="span"

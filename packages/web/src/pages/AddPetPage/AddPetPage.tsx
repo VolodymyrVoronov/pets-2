@@ -14,7 +14,7 @@ import {
 
 import trpc from "../../hooks/trpc";
 
-import Paths from "../../constants";
+import Paths from "../../constants/paths";
 
 import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
 import Form from "../../components/Form/Form";

@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { Loader, Message } from "rsuite";
+import { useLocation } from "react-router-dom";
 
 import trpc from "../../hooks/trpc";
 
@@ -7,6 +8,8 @@ import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
 import Pets from "../../components/Pets/Pets";
 
 const PetsPage = (): JSX.Element => {
+  const location = useLocation();
+
   const utils = trpc.useContext();
 
   const {
@@ -14,7 +17,7 @@ const PetsPage = (): JSX.Element => {
     isLoading: isLoadingGetPets,
     isError: isErrorGetPets,
     error: errorGetPets,
-  } = trpc.useQuery(["getPets"]);
+  } = trpc.useQuery([location.state]);
 
   const {
     mutate: mutateMarkPet,
