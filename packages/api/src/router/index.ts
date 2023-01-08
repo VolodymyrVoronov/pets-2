@@ -62,6 +62,23 @@ export const appRouter = trpc
         },
       });
     },
+  })
+  .mutation("markPet", {
+    input: z.object({
+      id: z.number(),
+      isMarked: z.boolean(),
+    }),
+
+    async resolve({ input, ctx }) {
+      return await ctx.prisma.pet.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          isMarked: input.isMarked,
+        },
+      });
+    },
   });
 
 export type AppRouter = typeof appRouter;

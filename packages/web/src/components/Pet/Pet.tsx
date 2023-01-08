@@ -14,6 +14,7 @@ interface IPetProps {
   information: string;
   photo: string;
   isMarked: boolean;
+  onMarkChange: (id: number, isMarked: boolean) => void;
 }
 
 const Pet = ({
@@ -23,7 +24,12 @@ const Pet = ({
   information,
   photo,
   isMarked,
+  onMarkChange,
 }: IPetProps): JSX.Element => {
+  const onMarkButtonClick = (): void => {
+    onMarkChange(id, !isMarked);
+  };
+
   return (
     <Panel shaded bordered bodyFill className={styles.pet}>
       <div
@@ -57,6 +63,7 @@ const Pet = ({
             appearance="primary"
             circle
             className={styles.pet__button}
+            onClick={onMarkButtonClick}
           />
         </WhisperWrapper>
 

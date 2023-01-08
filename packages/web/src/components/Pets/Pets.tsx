@@ -1,7 +1,8 @@
 import { FlexboxGrid, Col, Grid, Row } from "rsuite";
 
-import styles from "./Pets.module.css";
 import Pet from "../Pet/Pet";
+
+import styles from "./Pets.module.css";
 
 interface IPetsProps {
   pets: {
@@ -16,9 +17,10 @@ interface IPetsProps {
     createdAt: Date;
     isMarked: boolean;
   }[];
+  onMarkChange: (id: number, isMarked: boolean) => void;
 }
 
-const Pets = ({ pets }: IPetsProps): JSX.Element => {
+const Pets = ({ pets, onMarkChange }: IPetsProps): JSX.Element => {
   return (
     <FlexboxGrid justify="center" className={styles["pets-page"]}>
       <FlexboxGrid.Item as={Col} colspan={24} xs={22} sm={20} md={18} xl={22}>
@@ -34,6 +36,7 @@ const Pets = ({ pets }: IPetsProps): JSX.Element => {
                     information={information}
                     photo={photo}
                     isMarked={isMarked}
+                    onMarkChange={onMarkChange}
                   />
                 </Col>
               );
