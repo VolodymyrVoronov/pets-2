@@ -1,0 +1,89 @@
+.pet-info {
+  overflow: auto;
+
+  width: 100%;
+  height: calc(100vh - 60px);
+
+  padding: 25px 0;
+}
+
+.pet-info__card {
+  display: flex;
+  justify-content: center;
+
+  padding: 15px;
+
+  background-color: var(--white);
+}
+
+.pet-info__card div:nth-child(1) {
+  width: 100%;
+}
+
+.pet-info__created-at {
+  margin-bottom: 5px;
+
+  text-align: center;
+}
+
+.pet-info__photo {
+  display: flex;
+
+  width: 200px;
+  height: 200px;
+
+  margin: 0 auto;
+
+  background-size: cover;
+  background-position: center center;
+}
+
+@media only screen and (min-width: 576px) {
+  .pet-info__photo {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+.pet-info__name {
+  text-align: center;
+}
+
+.pet-info__age {
+  text-align: center;
+}
+
+.pet-info__breed {
+  text-align: center;
+}
+
+.pet-info__text-block {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 5px;
+
+  text-align: center;
+}
+
+@media only screen and (min-width: 576px) {
+  .pet-info__text-block {
+    padding: 0 25px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .pet-info__text-block {
+    padding: 0 50px;
+  }
+}
+
+.pet-info__buttons {
+  margin-top: 25px;
+}
+
+.pet-info__buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

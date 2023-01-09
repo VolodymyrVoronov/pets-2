@@ -16,8 +16,8 @@ import trpc from "../../hooks/trpc";
 
 import Paths from "../../constants/paths";
 
-import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
 import Form from "../../components/Form/Form";
+import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
 import PhotoUploader from "../../components/PhotoUploader/PhotoUploader";
 import WhisperWrapper from "../../components/WhisperWrapper/WhisperWrapper";
 

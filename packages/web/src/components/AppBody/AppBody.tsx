@@ -7,7 +7,6 @@ import Trpc from "../../constants/trpc";
 import PetsPage from "../../pages/PetsPage/PetsPage";
 import AddPetPage from "../../pages/AddPetPage/AddPetPage";
 import PetInfoPage from "../../pages/PetInfoPage/PetInfoPage";
-
 import Navbar from "../Navbar/Navbar";
 import AnimatedWrapper from "../AnimatedWrapper/AnimatedWrapper";
 

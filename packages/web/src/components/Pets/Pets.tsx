@@ -18,14 +18,16 @@ interface IPetsProps {
     isMarked: boolean;
   }[];
 
-  onMarkChange: (id: number, isMarked: boolean) => void;
-  onDeleteChange: (id: number) => void;
+  moreInfoHandle: (id: number) => void;
+  markHandle: (id: number, isMarked: boolean) => void;
+  deleteHandle: (id: number) => void;
 }
 
 const Pets = ({
   pets,
-  onMarkChange,
-  onDeleteChange,
+  moreInfoHandle,
+  markHandle,
+  deleteHandle,
 }: IPetsProps): JSX.Element => {
   return (
     <FlexboxGrid justify="center" className={styles["pets-page"]}>
@@ -42,8 +44,9 @@ const Pets = ({
                     information={information}
                     photo={photo}
                     isMarked={isMarked}
-                    onMarkChange={onMarkChange}
-                    onDeleteChange={onDeleteChange}
+                    moreInfoHandle={moreInfoHandle}
+                    markHandle={markHandle}
+                    deleteHandle={deleteHandle}
                   />
                 </Col>
               );

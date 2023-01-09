@@ -1,13 +1,16 @@
 import { useCallback, useEffect } from "react";
 import { Loader, Message } from "rsuite";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation, generatePath } from "react-router-dom";
 
 import trpc from "../../hooks/trpc";
 
-import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
+import Paths from "../../constants/paths";
+
 import Pets from "../../components/Pets/Pets";
+import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
 
 const PetsPage = (): JSX.Element => {
+  const navigate = useNavigate();
   const location = useLocation();
 
   const utils = trpc.useContext();
@@ -33,11 +36,16 @@ const PetsPage = (): JSX.Element => {
     error: errorMutateDeletePet,
   } = trpc.useMutation(["deletePet"]);
 
-  const onMarkChange = (id: number, isMarked: boolean): void => {
+  const moreInfoHandle = (id: number): void => {
+    const path = generatePath(Paths.PetInfoPage, { id: String(id) });
+    navigate(path);
+  };
+
+  const markHandle = (id: number, isMarked: boolean): void => {
     mutateMarkPet({ id, isMarked });
   };
 
-  const onDeleteChange = (id: number): void => {
+  const deleteHandle = (id: number): void => {
     mutateDeletePet({ id });
   };
 
@@ -77,8 +85,9 @@ const PetsPage = (): JSX.Element => {
         data && (
           <Pets
             pets={data}
-            onMarkChange={onMarkChange}
-            onDeleteChange={onDeleteChange}
+            moreInfoHandle={moreInfoHandle}
+            markHandle={markHandle}
+            deleteHandle={deleteHandle}
           />
         )
       )}
