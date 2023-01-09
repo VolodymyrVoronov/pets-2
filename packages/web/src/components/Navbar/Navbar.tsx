@@ -9,7 +9,7 @@ import Trpc from "../../constants/trpc";
 
 import styles from "./Navbar.module.css";
 
-interface INavLinks {
+interface INavLink {
   id: number;
   to: string;
   state?: string;
@@ -17,29 +17,30 @@ interface INavLinks {
   text: string;
 }
 
-const navLinks: INavLinks[] = [
-  {
-    id: 1,
-    to: Paths.PetsPage,
-    state: Trpc.GetPets,
-    icon: <MdPets />,
-    text: "My pets",
-  },
-  {
-    id: 2,
-    to: Paths.AddPetPage,
-    state: "",
-    icon: <MdNoteAdd />,
-    text: "Add pet",
-  },
-  {
-    id: 3,
-    to: Paths.MarkedPetsPage,
-    state: Trpc.GetMarkedPets,
-    icon: <MdBookmark />,
-    text: "Marked pets",
-  },
-];
+const navLinks: INavLink[] =
+  [
+    {
+      id: 1,
+      to: Paths.PetsPage,
+      state: Trpc.GetPets,
+      icon: <MdPets />,
+      text: "My pets",
+    },
+    {
+      id: 2,
+      to: Paths.AddPetPage,
+      state: "",
+      icon: <MdNoteAdd />,
+      text: "Add pet",
+    },
+    {
+      id: 3,
+      to: Paths.MarkedPetsPage,
+      state: Trpc.GetMarkedPets,
+      icon: <MdBookmark />,
+      text: "Marked pets",
+    },
+  ] || undefined;
 
 interface INavbarProps {
   buttonsPosition?: "left" | "center" | "right";
