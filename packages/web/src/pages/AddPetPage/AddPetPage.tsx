@@ -15,6 +15,7 @@ import {
 import trpc from "../../hooks/trpc";
 
 import Paths from "../../constants/paths";
+import Trpc from "../../constants/trpc";
 
 import Form from "../../components/Form/Form";
 import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
@@ -57,7 +58,7 @@ const AddPetPage = (): JSX.Element => {
   );
 
   const onBackButtonClick = (): void => {
-    navigate(Paths.PetsPage);
+    navigate(Paths.PetsPage, { state: Trpc.GetPets });
   };
 
   const onSaveButtonClick = (): void => {
@@ -78,7 +79,7 @@ const AddPetPage = (): JSX.Element => {
   const redirectToPetsPage = useCallback(() => {
     if (isSuccess) {
       const timeoutId = setTimeout(() => {
-        navigate(Paths.PetsPage);
+        navigate(Paths.PetsPage, { state: Trpc.GetPets });
 
         clearTimeout(timeoutId);
       }, 1000);

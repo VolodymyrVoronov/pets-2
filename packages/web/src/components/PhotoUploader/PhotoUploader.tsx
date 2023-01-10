@@ -10,14 +10,12 @@ import placeholderPhoto from "../../assets/images/placeholder-01.png";
 import styles from "./PhotoUploader.module.css";
 
 interface IPhotoUploaderProps {
-  data?: {
-    photo: string;
-  };
+  photo?: string;
   onUploaderChange?: (photo: string) => void;
 }
 
 const PhotoUploader = ({
-  data,
+  photo,
   onUploaderChange,
 }: IPhotoUploaderProps): JSX.Element => {
   const [petData, setPetData] = useState({
@@ -62,9 +60,7 @@ const PhotoUploader = ({
       <div
         className={styles["uploader__uploaded-photo"]}
         style={{
-          backgroundImage: `url(${
-            data?.photo || petData.photo || placeholderPhoto
-          })`,
+          backgroundImage: `url(${petData.photo || photo || placeholderPhoto})`,
         }}
       />
     </div>

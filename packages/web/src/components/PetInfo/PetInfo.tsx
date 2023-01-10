@@ -26,6 +26,7 @@ interface IPetInfoProps {
   isMarked: boolean;
 
   backHandle: () => void;
+  editHandle: () => void;
   markHandle: (id: number, isMarked: boolean) => void;
   deleteHandle: (id: number) => void;
 }
@@ -43,6 +44,7 @@ const PetInfo = ({
   isMarked,
 
   backHandle,
+  editHandle,
   markHandle,
   deleteHandle,
 }: IPetInfoProps): JSX.Element => {
@@ -50,6 +52,10 @@ const PetInfo = ({
 
   const onBackButtonClick = (): void => {
     backHandle();
+  };
+
+  const onEditButtonClick = (): void => {
+    editHandle();
   };
 
   const onMarkButtonClick = (): void => {
@@ -117,7 +123,11 @@ const PetInfo = ({
             </WhisperWrapper>
 
             <WhisperWrapper text="Edit this card">
-              <Button color="blue" appearance="primary">
+              <Button
+                color="blue"
+                appearance="primary"
+                onClick={onEditButtonClick}
+              >
                 <MdModeEditOutline /> &nbsp; Edit
               </Button>
             </WhisperWrapper>

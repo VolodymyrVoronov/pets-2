@@ -1,0 +1,9 @@
+.modal-box__buttons {
+  margin-top: 25px;
+}
+
+.modal-box__buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
