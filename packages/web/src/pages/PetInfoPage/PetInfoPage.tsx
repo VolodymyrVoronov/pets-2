@@ -110,6 +110,7 @@ const PetInfoPage = (): JSX.Element => {
     const pet = {
       ...petData,
       photo: petPhoto || data?.photo,
+      isMarked: data?.isMarked,
     } as TCombinedPet;
 
     mutate({ ...pet, id: Number(id) });
