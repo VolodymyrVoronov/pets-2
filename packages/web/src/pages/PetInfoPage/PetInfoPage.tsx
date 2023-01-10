@@ -4,7 +4,7 @@ import { Col, Grid, Loader, Message, Row } from "rsuite";
 
 import trpc from "../../hooks/trpc";
 
-import formatDate from "../../helpers/formattedDate";
+import formatDate from "../../helpers/formatDate";
 
 import Trpc from "../../constants/trpc";
 import Paths from "../../constants/paths";

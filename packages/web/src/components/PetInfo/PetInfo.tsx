@@ -7,7 +7,7 @@ import {
   MdFavorite,
 } from "react-icons/md";
 
-import formatDate from "../../helpers/formattedDate";
+import formatDate from "../../helpers/formatDate";
 
 import WhisperWrapper from "../WhisperWrapper/WhisperWrapper";
 
