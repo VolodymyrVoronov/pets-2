@@ -1,4 +1,4 @@
-type Separator = "/" | "-";
+type Separator = "/" | "-" | "|" | ":" | "\\";
 
 const formatDate = (
   date: Date | undefined,
