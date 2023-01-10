@@ -7,6 +7,8 @@ import {
   MdFavorite,
 } from "react-icons/md";
 
+import formatDate from "../../helpers/formattedDate";
+
 import WhisperWrapper from "../WhisperWrapper/WhisperWrapper";
 
 import placeholderPhoto from "../../assets/images/placeholder-01.png";
@@ -48,8 +50,6 @@ const PetInfo = ({
   markHandle,
   deleteHandle,
 }: IPetInfoProps): JSX.Element => {
-  const formattedDate = new Date(createdAt).toLocaleDateString();
-
   const onBackButtonClick = (): void => {
     backHandle();
   };
@@ -66,12 +66,14 @@ const PetInfo = ({
     deleteHandle(id);
   };
 
+  const formattedDate = formatDate(createdAt);
+
   return (
     <FlexboxGrid justify="center" className={styles["pet-info"]}>
       <FlexboxGrid.Item as={Col} colspan={24} xs={22} sm={18} xl={12}>
         <Panel shaded bordered bodyFill className={styles["pet-info__card"]}>
           <p className={styles["pet-info__created-at"]}>
-            Card created at: <strong>{formattedDate}</strong>
+            Created at: <strong>{formattedDate}</strong>
           </p>
           <div
             className={styles["pet-info__photo"]}

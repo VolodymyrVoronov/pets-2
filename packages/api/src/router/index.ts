@@ -59,6 +59,37 @@ export const appRouter = trpc
       });
     },
   })
+  .mutation("updatePet", {
+    input: z.object({
+      id: z.number(),
+      name: z.string().min(1).max(245),
+      age: z.string(),
+      breed: z.string().max(50).default("").optional(),
+      photo: z.string().default("").optional(),
+      diet: z.string().max(500).default("").optional(),
+      diseases: z.string().max(500).default("").optional(),
+      information: z.string().max(500).default("").optional(),
+      isMarked: z.boolean().optional(),
+    }),
+
+    async resolve({ input, ctx }) {
+      return await ctx.prisma.pet.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          name: input.name,
+          age: input.age,
+          breed: input.breed || "",
+          photo: input.photo || "",
+          diet: input.diet || "",
+          diseases: input.diseases || "",
+          information: input.information || "",
+          isMarked: input.isMarked || false,
+        },
+      });
+    },
+  })
   .mutation("deletePet", {
     input: z.object({
       id: z.number(),

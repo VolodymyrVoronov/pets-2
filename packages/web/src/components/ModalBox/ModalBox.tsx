@@ -42,7 +42,7 @@ const ModalBox = ({
             </Button>
           </WhisperWrapper>
 
-          <WhisperWrapper text="All changes will be saved">
+          <WhisperWrapper text="Save all changes">
             <Button color="green" appearance="primary" onClick={saveHandle}>
               <MdSave /> &nbsp; Save
             </Button>

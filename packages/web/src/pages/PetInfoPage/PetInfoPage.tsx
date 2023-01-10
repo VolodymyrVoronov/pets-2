@@ -4,6 +4,8 @@ import { Col, Grid, Loader, Message, Row } from "rsuite";
 
 import trpc from "../../hooks/trpc";
 
+import formatDate from "../../helpers/formattedDate";
+
 import Trpc from "../../constants/trpc";
 import Paths from "../../constants/paths";
 
@@ -12,6 +14,8 @@ import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
 import ModalBox from "../../components/ModalBox/ModalBox";
 import PhotoUploader from "../../components/PhotoUploader/PhotoUploader";
 import Form from "../../components/Form/Form";
+
+import styles from "./PetInfoPage.module.css";
 
 interface IPet {
   name: string;
@@ -52,6 +56,14 @@ const PetInfoPage = (): JSX.Element => {
     error: errorMutateDeletePet,
   } = trpc.useMutation(["deletePet"]);
 
+  const {
+    mutate,
+    isLoading: isLoadingUpdatePet,
+    isSuccess: isSuccessUpdatePet,
+    isError: isErrorUpdatePet,
+    error: errorUpdatePet,
+  } = trpc.useMutation(["updatePet"]);
+
   const backHandle = (): void => {
     navigate(Paths.PetsPage, { state: Trpc.GetPets });
   };
@@ -69,14 +81,10 @@ const PetInfoPage = (): JSX.Element => {
   };
 
   const refetchPets = useCallback(() => {
-    if (isSuccessMarkPet || isSuccessMutateDeletePet) {
+    if (isSuccessMarkPet || isSuccessMutateDeletePet || isSuccessUpdatePet) {
       utils.invalidateQueries();
     }
-  }, [isSuccessMarkPet, isSuccessMutateDeletePet, utils]);
-
-  useEffect(() => {
-    refetchPets();
-  }, [refetchPets]);
+  }, [isSuccessMarkPet, isSuccessMutateDeletePet, isSuccessUpdatePet, utils]);
 
   const onFormChange = useMemo(
     () => (formData: IPet) => {
@@ -101,17 +109,29 @@ const PetInfoPage = (): JSX.Element => {
 
     const pet = {
       ...petData,
-      photo: petPhoto,
+      photo: petPhoto || data?.photo,
     } as TCombinedPet;
 
-    console.log(pet);
-
-    // mutate(pet);
+    mutate({ ...pet, id: Number(id) });
   };
 
   const onCloseButtonClick = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    refetchPets();
+  }, [refetchPets]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setOpen(false);
+
+      clearTimeout(timeoutId);
+    }, 750);
+  }, [isSuccessUpdatePet]);
+
+  const formattedDate = formatDate(data?.updatedAt);
 
   return (
     <AnimatedWrapper>
@@ -153,6 +173,18 @@ const PetInfoPage = (): JSX.Element => {
           saveHandle={onSaveButtonClick}
           closeHandle={onCloseButtonClick}
         >
+          {isLoadingUpdatePet && <Loader content="Updating data..." />}
+
+          {isErrorUpdatePet && (
+            <Message showIcon type="error">
+              Error while updating data / {errorUpdatePet?.message}
+            </Message>
+          )}
+
+          <p className={styles["pet-info-page__updated-at"]}>
+            Updated at: <strong>{formattedDate}</strong>
+          </p>
+
           <Grid fluid>
             <Row>
               <Col xs={24} lg={11} lgPush={0}>
