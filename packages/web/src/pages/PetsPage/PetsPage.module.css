@@ -1,0 +1,15 @@
+.pets-page__no-pets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+
+  margin-top: 50px;
+}
+
+.pets-page__no-pets-icon {
+  margin-top: 5px;
+
+  font-size: 36px;
+}

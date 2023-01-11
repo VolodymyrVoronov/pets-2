@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { Loader, Message } from "rsuite";
 import { useNavigate, useLocation, generatePath } from "react-router-dom";
+import { MdOutlineFolder } from "react-icons/md";
 
 import trpc from "../../hooks/trpc";
 
@@ -8,6 +9,8 @@ import Paths from "../../constants/paths";
 
 import Pets from "../../components/Pets/Pets";
 import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
+
+import styles from "./PetsPage.module.css";
 
 const PetsPage = (): JSX.Element => {
   const navigate = useNavigate();
@@ -79,17 +82,20 @@ const PetsPage = (): JSX.Element => {
         </Message>
       )}
 
-      {isLoadingFetchPets ? (
-        <Loader size="lg" center />
+      {isLoadingFetchPets && <Loader size="lg" center />}
+
+      {data?.length ? (
+        <Pets
+          pets={data}
+          moreInfoHandle={moreInfoHandle}
+          markHandle={markHandle}
+          deleteHandle={deleteHandle}
+        />
       ) : (
-        data && (
-          <Pets
-            pets={data}
-            moreInfoHandle={moreInfoHandle}
-            markHandle={markHandle}
-            deleteHandle={deleteHandle}
-          />
-        )
+        <div className={styles["pets-page__no-pets"]}>
+          <h4>No pets found</h4>
+          <MdOutlineFolder className={styles["pets-page__no-pets-icon"]} />
+        </div>
       )}
     </AnimatedWrapper>
   );
