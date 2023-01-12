@@ -1,4 +1,5 @@
-import { render } from "@testing-library/react";
+import { vi } from "vitest";
+import { fireEvent, render } from "@testing-library/react";
 
 import Form from "./Form";
 
@@ -221,5 +222,31 @@ describe("Form", () => {
     expect(getByRole("textbox", { name: /diet/i })).not.toHaveValue();
     expect(getByRole("textbox", { name: /diseases/i })).not.toHaveValue();
     expect(getByRole("textbox", { name: /information/i })).not.toHaveValue();
+  });
+
+  it("should call func with values", () => {
+    const onFormInputsChange = vi.fn();
+
+    const { getByRole } = render(<Form onFormChange={onFormInputsChange} />);
+
+    const inputName = getByRole("textbox", { name: /name/i });
+    const inputAge = getByRole("spinbutton", { name: /age/i });
+    const inputBreed = getByRole("textbox", { name: /breed/i });
+    const inputDiet = getByRole("textbox", { name: /diet/i });
+    const inputDiseases = getByRole("textbox", { name: /diseases/i });
+    const inputInformation = getByRole("textbox", { name: /information/i });
+
+    fireEvent.change(inputName, { target: { value: mockFormData.name } });
+    fireEvent.change(inputAge, { target: { value: mockFormData.age } });
+    fireEvent.change(inputBreed, { target: { value: mockFormData.breed } });
+    fireEvent.change(inputDiet, { target: { value: mockFormData.diet } });
+    fireEvent.change(inputDiseases, {
+      target: { value: mockFormData.diseases },
+    });
+    fireEvent.change(inputInformation, {
+      target: { value: mockFormData.information },
+    });
+
+    expect(onFormInputsChange).toBeCalledWith(mockFormData);
   });
 });
