@@ -68,6 +68,7 @@ const Pet = ({
             circle
             className={styles.pet__button}
             onClick={onMoreInfoButtonClick}
+            data-testid="more-information-button"
           />
         </WhisperWrapper>
 
@@ -79,6 +80,7 @@ const Pet = ({
             circle
             className={styles.pet__button}
             onClick={onMarkButtonClick}
+            data-testid="mark-button"
           />
         </WhisperWrapper>
 
@@ -90,6 +92,7 @@ const Pet = ({
             circle
             className={styles.pet__button}
             onClick={onDeleteButtonClick}
+            data-testid="delete-button"
           />
         </WhisperWrapper>
       </ButtonGroup>
