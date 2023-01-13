@@ -1,6 +1,8 @@
 import { vi } from "vitest";
 import { render, fireEvent } from "@testing-library/react";
 
+import noop from "../../helpers/noop";
+
 import Pet from "./Pet";
 
 const mockPetData = {
@@ -11,8 +13,6 @@ const mockPetData = {
   photo: "test-photo.png",
   isMarked: false,
 };
-
-const noop = (...args: any[]): any => {};
 
 describe("Pet", () => {
   it("renders correctly", () => {
