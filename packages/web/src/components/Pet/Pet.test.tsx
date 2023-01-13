@@ -14,7 +14,7 @@ const mockPetData = {
 
 const noop = (...args: any[]): any => {};
 
-describe("WhisperWrapper", () => {
+describe("Pet", () => {
   it("renders correctly", () => {
     const { container } = render(
       <Pet

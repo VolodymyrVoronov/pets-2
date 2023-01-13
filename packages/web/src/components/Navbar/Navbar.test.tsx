@@ -4,7 +4,7 @@ import { BrowserRouter, Router } from "react-router-dom";
 
 import Navbar from "./Navbar";
 
-describe("WhisperWrapper", () => {
+describe("Navbar", () => {
   it("renders correctly", () => {
     const { container } = render(
       <BrowserRouter>

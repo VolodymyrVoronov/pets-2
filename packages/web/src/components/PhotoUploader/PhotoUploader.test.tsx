@@ -11,7 +11,7 @@ const file = new File(["test-photo"], "test-photo.png", {
   type: "image/png",
 });
 
-describe("Form", () => {
+describe("PhotoUploader", () => {
   it("renders correctly", () => {
     const { container } = render(<PhotoUploader />);
 
