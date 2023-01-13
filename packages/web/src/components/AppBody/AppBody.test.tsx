@@ -51,6 +51,7 @@ describe("AppBody", () => {
                   <a
                     aria-current="page"
                     class="_navbar__link_278c00 active"
+                    data-testid="/pets"
                     href="/pets"
                   >
                     <span
@@ -107,6 +108,7 @@ describe("AppBody", () => {
                   </a>
                   <a
                     class="_navbar__link_278c00"
+                    data-testid="/add-pet"
                     href="/add-pet"
                   >
                     <span
@@ -142,6 +144,7 @@ describe("AppBody", () => {
                   </a>
                   <a
                     class="_navbar__link_278c00"
+                    data-testid="/marked-pets"
                     href="/marked-pets"
                   >
                     <span

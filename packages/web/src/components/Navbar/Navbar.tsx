@@ -59,6 +59,7 @@ const Navbar = ({ buttonsPosition = "center" }: INavbarProps): JSX.Element => {
               to={to}
               state={state}
               className={styles.navbar__link}
+              data-testid={to}
             >
               {({ isActive }) => (
                 <Nav.Item
