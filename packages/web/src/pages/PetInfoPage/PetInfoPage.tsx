@@ -1,5 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  NavigateFunction,
+  NavigateOptions,
+  To,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { Col, Grid, Loader, Message, Row } from "rsuite";
 
 import trpc from "../../hooks/trpc";
@@ -7,7 +13,6 @@ import trpc from "../../hooks/trpc";
 import formatDate from "../../helpers/formatDate";
 
 import Trpc from "../../constants/trpc";
-import Paths from "../../constants/paths";
 
 import PetInfo from "../../components/PetInfo/PetInfo";
 import AnimatedWrapper from "../../components/AnimatedWrapper/AnimatedWrapper";
@@ -26,9 +31,13 @@ interface IPet {
   information: string;
 }
 
+interface IUseNavigate extends NavigateFunction {
+  (to: To | number, options?: NavigateOptions): void;
+}
+
 const PetInfoPage = (): JSX.Element => {
   const utils = trpc.useContext();
-  const navigate = useNavigate();
+  const navigate = useNavigate() as IUseNavigate;
   const { id } = useParams();
   const [open, setOpen] = useState(false);
 
@@ -65,7 +74,7 @@ const PetInfoPage = (): JSX.Element => {
   } = trpc.useMutation(["updatePet"]);
 
   const backHandle = (): void => {
-    navigate(Paths.PetsPage, { state: Trpc.GetPets });
+    navigate(-1, { state: Trpc.GetPets });
   };
 
   const editHandle = (): void => {
