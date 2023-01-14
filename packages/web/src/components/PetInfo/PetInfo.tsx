@@ -119,6 +119,7 @@ const PetInfo = ({
                 color="violet"
                 appearance="primary"
                 onClick={onBackButtonClick}
+                data-testid="back-button"
               >
                 <MdKeyboardBackspace /> &nbsp; Back
               </Button>
@@ -129,6 +130,7 @@ const PetInfo = ({
                 color="blue"
                 appearance="primary"
                 onClick={onEditButtonClick}
+                data-testid="edit-button"
               >
                 <MdModeEditOutline /> &nbsp; Edit
               </Button>
@@ -139,14 +141,15 @@ const PetInfo = ({
                 color="orange"
                 appearance="primary"
                 onClick={onMarkButtonClick}
+                data-testid="mark-unmark-button"
               >
                 {isMarked ? (
                   <>
-                    <MdFavorite /> &nbsp; Unmark
+                    <MdFavorite data-testid="unmark-button" /> &nbsp; Unmark
                   </>
                 ) : (
                   <>
-                    <MdFavoriteBorder /> &nbsp; Mark
+                    <MdFavoriteBorder data-testid="mark-button" /> &nbsp; Mark
                   </>
                 )}
               </Button>
@@ -157,6 +160,7 @@ const PetInfo = ({
                 color="red"
                 appearance="primary"
                 onClick={onDeleteButtonClick}
+                data-testid="delete-button"
               >
                 <MdDelete /> &nbsp; Delete
               </Button>
