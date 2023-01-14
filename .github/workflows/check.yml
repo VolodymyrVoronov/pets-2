@@ -1,8 +1,6 @@
 name: Check
 on: push
-defaults:
-  run:
-    working-directory: @monorepo/web
+  paths: ./packages/web
 jobs:
   lint:
     runs-on: ubuntu-latest
