@@ -1,4 +1,5 @@
 name: Check
+working-directory: ./../../packages/web
 on: push
 jobs:
   lint:
