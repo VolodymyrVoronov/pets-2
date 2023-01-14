@@ -37,13 +37,23 @@ const ModalBox = ({
           className={styles["modal-box__buttons"]}
         >
           <WhisperWrapper text="Back without saving">
-            <Button color="orange" appearance="primary" onClick={closeHandle}>
+            <Button
+              color="orange"
+              appearance="primary"
+              onClick={closeHandle}
+              data-testid="close-button"
+            >
               <MdOutlineArrowBackIos /> &nbsp; Cancel
             </Button>
           </WhisperWrapper>
 
           <WhisperWrapper text="Save all changes">
-            <Button color="green" appearance="primary" onClick={saveHandle}>
+            <Button
+              color="green"
+              appearance="primary"
+              onClick={saveHandle}
+              data-testid="confirm-button"
+            >
               <MdSave /> &nbsp; Save
             </Button>
           </WhisperWrapper>

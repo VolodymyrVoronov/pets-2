@@ -52,6 +52,7 @@ const PhotoUploader = ({
           accept=".jpeg, .png, .jpg"
           onChange={(e) => onFileUploadChange(e)}
           id="photo"
+          data-testid="photo-uploader"
         />
       </WhisperWrapper>
 
