@@ -1,7 +1,6 @@
 name: Check
 on: push
-  paths-ignore:
-    - src/hooks/trpc.ts
+  paths-ignore: ./src/hooks/trpc.ts
 defaults:
   run:
     working-directory: ./packages/web
