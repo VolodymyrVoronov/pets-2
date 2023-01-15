@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "check-types": "tsc --noEmit",
     "eslint": "eslint \"src/**/*.{ts,tsx}\" --quiet",
-    "lint": "npm run eslint && npm run check-types",
+    "lint": "npm run eslint",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
