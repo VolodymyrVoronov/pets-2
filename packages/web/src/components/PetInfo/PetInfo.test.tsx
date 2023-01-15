@@ -53,7 +53,7 @@ describe("PetInfo", () => {
                 >
                   Created at: 
                   <strong>
-                    14/01/2023
+                    15/01/2023
                   </strong>
                 </p>
                 <div
