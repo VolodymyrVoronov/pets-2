@@ -138,7 +138,7 @@ const PetInfo = ({
 
             <WhisperWrapper text={isMarked ? "Unmark" : "Mark"}>
               <Button
-                color="orange"
+                style={{ background: `${isMarked ? "#fa8900" : "#fcb160"}` }}
                 appearance="primary"
                 onClick={onMarkButtonClick}
                 data-testid="mark-unmark-button"
