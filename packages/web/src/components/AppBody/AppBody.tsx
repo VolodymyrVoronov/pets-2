@@ -7,6 +7,7 @@ import Trpc from "../../constants/trpc";
 import PetsPage from "../../pages/PetsPage/PetsPage";
 import AddPetPage from "../../pages/AddPetPage/AddPetPage";
 import PetInfoPage from "../../pages/PetInfoPage/PetInfoPage";
+import NoPage from "../../pages/NoPage/NoPage";
 import Navbar from "../Navbar/Navbar";
 import AnimatedWrapper from "../AnimatedWrapper/AnimatedWrapper";
 
@@ -44,7 +45,7 @@ const AppBody = (): JSX.Element => {
             <Route path={Paths.PetInfoPage} element={<PetInfoPage />} />
             <Route path={Paths.AddPetPage} element={<AddPetPage />} />
             <Route path={Paths.MarkedPetsPage} element={<PetsPage />} />
-            <Route path={Paths.NoPage} element={<div>NoPage</div>} />
+            <Route path={Paths.NoPage} element={<NoPage />} />
           </Routes>
         </AnimatePresence>
       </div>
