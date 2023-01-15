@@ -1,6 +1,5 @@
 name: Check
 on: push
-  paths-ignore: ./packages/api
 defaults:
   run:
     working-directory: ./packages/web
