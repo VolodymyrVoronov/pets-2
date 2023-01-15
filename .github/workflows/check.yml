@@ -3,6 +3,7 @@ on: push
 defaults:
   run:
     working-directory: ./packages/web
+    paths-ignore: ./packages/api
 jobs:
   lint:
     runs-on: ubuntu-latest
