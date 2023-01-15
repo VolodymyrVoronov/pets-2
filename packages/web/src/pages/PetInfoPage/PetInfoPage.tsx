@@ -49,7 +49,7 @@ const PetInfoPage = (): JSX.Element => {
     isLoading: isLoadingFetchPet,
     isError: isErrorFetchPet,
     error: errorFetchPet,
-  } = trpc.useQuery(["getPet", { id: Number(id) }]);
+  } = trpc.useQuery(["getPet", { id: Number(id) as number }]);
 
   const {
     mutate: mutateMarkPet,
