@@ -75,7 +75,7 @@ const Pet = ({
         <WhisperWrapper text={isMarked ? "Unmark" : "Mark"}>
           <IconButton
             icon={isMarked ? <MdFavorite /> : <MdFavoriteBorder />}
-            style={{ background: `${isMarked ? "#fa8900" : "#fcc690"}` }}
+            style={{ background: `${isMarked ? "#fa8900" : "#fcb160"}` }}
             appearance="primary"
             circle
             className={styles.pet__button}
